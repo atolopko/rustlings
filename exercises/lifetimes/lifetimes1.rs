@@ -8,9 +8,7 @@
 // Execute `rustlings hint lifetimes1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
-fn longest(x: &str, y: &str) -> &str {
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() {
         x
     } else {
@@ -25,3 +23,34 @@ fn main() {
     let result = longest(string1.as_str(), string2);
     println!("The longest string is '{}'", result);
 }
+
+/* #[derive(Debug)]
+struct Data {
+    y: i32
+}
+
+// A struct with annotation of lifetimes.
+#[derive(Debug)]
+struct Borrowed<'a> {
+    x: &'a Data
+}
+
+trait Init<'a> {
+    fn init(y: &'a Data) -> Self;
+}
+
+// Annotate lifetimes to impl.
+impl<'a> Init for Borrowed<'a> {
+    fn init(y: &'a Data) -> Borrowed {
+        Self {
+            x: y,
+        }
+    }
+}
+
+fn main() {
+    let d = Data { y: 10 };
+    let b: Borrowed = Init::init(&d);
+    println!("b is {:?}", b);
+}
+*/
